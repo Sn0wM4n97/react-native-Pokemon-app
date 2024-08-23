@@ -1,0 +1,75 @@
+import { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  FlatList,
+  Pressable
+} from "react-native";
+import { Link } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { AnimatedGameCard, PokemonCard } from "./GameCard";
+import { Dimensions } from "react-native";
+import LogoPokemonSvg from "./LogoPokemon";
+import { getPokemons } from "../lib/pokemons";
+import { InfoIcon } from "./Icons";
+
+
+
+
+export  function Main() {
+  const [games, setGames] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
+  const [numColumns, setNumColumns] = useState(3);
+  const insets = useSafeAreaInsets();
+
+  useEffect(() => {
+    getPokemons().then((pokemon) => setPokemon(pokemon));
+  }, []);
+  
+  const handleLayoutChange = () =>{
+    const screenWidth = Dimensions.get('window').width;
+    if (screenWidth < 400) {
+      setNumColumns(2);
+    } else {
+      setNumColumns(3);
+    }
+
+    }
+
+  return (
+    <View style={{paddingTop: insets.top, paddingBottom: insets.bottom}}>
+      <View style={styles.headerLogo}>
+       <LogoPokemonSvg />
+      </View>
+      <Link asChild href="/about">
+          <Pressable>
+            <View className="mx-4 my-2 ">
+              <InfoIcon/>
+            </View>
+          </Pressable>
+      </Link>
+      <FlatList 
+        data={pokemon}
+        keyExtractor={pokemon => pokemon.id}
+        numColumns={numColumns}
+        horizontal={false}
+        showsVerticalScrollIndicator={false}
+        onLayout={handleLayoutChange}
+        renderItem={({ item, index }) =><PokemonCard pokemon={item} index={index} />}
+        />
+    </View>
+          );
+        }
+
+const styles = StyleSheet.create({
+
+  headerLogo:{
+    marginTop: 10,
+    justifyContent: "center",
+    height:80,
+  }
+
+});
