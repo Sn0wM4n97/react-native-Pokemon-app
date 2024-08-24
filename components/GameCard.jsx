@@ -1,5 +1,9 @@
+import { Link } from "expo-router";
 import { useEffect, useRef } from "react";
-import { View, Text, Image, StyleSheet, Animated } from "react-native";
+import { View, Text, Image, StyleSheet, Animated, Pressable } from "react-native";
+import { styled } from "nativewind";
+
+const StylePressable = styled(Pressable);
 export function GameCard({ game }) {
     return (
         <View style={styles.TextContainer} key={game.slug}>
@@ -37,17 +41,23 @@ export function AnimatedGameCard({ game, index }) {
     )
 }
 
-export function PokemonCard({ pokemon }) {
+export function PokemonCard({pokemon}) {
     return (
-        <View className="  mx-2 py-2  rounded-2xl  my-2 " style={styles.contentPokemon}>
-            <Image 
-              source={{ uri: pokemon.image }} 
-              style={styles.imageGame}
-            />
-            <View  className="flex-1 px-2" key={pokemon.id}>
-                <Text className="font-bold text-lg my-3 text-black">{pokemon.name}</Text>                
+      <View className="bg-slate-900 w-1/3">
+        <Link href={`/${pokemon.id}`} asChild>
+          <StylePressable className={`active:opacity-70 active:bg-amber-300 rounded-3xl active:scale-75`}>
+            <View className=" py-3  rounded-2xl  my-1 bg-slate-700" style={styles.contentPokemon} key={pokemon.id}>
+                <Image className="bg-slate-600"
+                  source={{ uri: pokemon.image }} 
+                  style={styles.imageGame}
+                />
+                <View  className="px-2">
+                    <Text className="font-bold text-lg my-1 text-white">{pokemon.name}</Text>                
+                </View>
             </View>
-        </View>
+          </StylePressable>
+        </Link>
+      </View>
     )
 }
 
@@ -59,9 +69,7 @@ const styles = StyleSheet.create({
     },
     
     contentPokemon:{
-      backgroundColor: '#ffff',
       marginHorizontal: 5,
-      width: 120,
       alignContent: "center",
       alignItems: "center",
       justifyContent: "space-between",
@@ -78,10 +86,11 @@ const styles = StyleSheet.create({
     },
   
     imageGame: {
+      marginTop: 2,
       width: 100, 
       height: 100,
       borderRadius: 10,
-      backgroundColor: "#ffdbd0",
+      
   
     },
     scrollView: {

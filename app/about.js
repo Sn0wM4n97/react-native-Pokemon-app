@@ -3,18 +3,22 @@ import { Link } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { HomeIcon } from "../components/Icons";
 
+import {styled} from "nativewind";
+
+const StylePressable = styled(Pressable);
+
 export default function About() {
     const insets = useSafeAreaInsets();
     return(
         
-        <View style={{paddingTop: insets.top, paddingBottom: insets.bottom}}>
+        <View className="bg-slate-900">
             <ScrollView>
                 <Link asChild  href="/">
-                    <Pressable>
+                    <StylePressable className={`active:opacity-20`}>
                         <View className="mx-2 my-2 ">
                            <HomeIcon/>   
                         </View>   
-                    </Pressable>
+                    </StylePressable>
                 </Link>
                 <Text className="text-white font-bold text-2xl px-2 text-center my-2">Sobre nosotros</Text>
                 <Text className="text-white text-justify px-2 my-2">  

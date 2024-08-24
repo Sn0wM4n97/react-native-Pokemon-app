@@ -20,7 +20,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#555',
+    backgroundColor: '#000',
     alignItems: "center",
     justifyContent: "space-between",
   }

@@ -19,6 +19,7 @@ import { InfoIcon } from "./Icons";
 
 
 
+
 export  function Main() {
   const [games, setGames] = useState([]);
   const [pokemon, setPokemon] = useState([]);
@@ -33,32 +34,29 @@ export  function Main() {
     const screenWidth = Dimensions.get('window').width;
     if (screenWidth < 400) {
       setNumColumns(2);
-    } else {
+    } else { 
       setNumColumns(3);
     }
 
     }
 
   return (
-    <View style={{paddingTop: insets.top, paddingBottom: insets.bottom}}>
-      <View style={styles.headerLogo}>
-       <LogoPokemonSvg />
-      </View>
-      <Link asChild href="/about">
-          <Pressable>
-            <View className="mx-4 my-2 ">
-              <InfoIcon/>
-            </View>
-          </Pressable>
-      </Link>
+    <View className="bg-slate-900" >
+
+
       <FlatList 
+        className=" mb-auto"
         data={pokemon}
         keyExtractor={pokemon => pokemon.id}
-        numColumns={numColumns}
+        numColumns={3}
         horizontal={false}
         showsVerticalScrollIndicator={false}
+        maxToRenderPerBatch={4}
+        onEndReachedThreshold={0.5}
         onLayout={handleLayoutChange}
-        renderItem={({ item, index }) =><PokemonCard pokemon={item} index={index} />}
+        renderItem={({ item, index }) =>
+            <PokemonCard pokemon={item} index={index} />
+          }
         />
     </View>
           );
@@ -66,10 +64,6 @@ export  function Main() {
 
 const styles = StyleSheet.create({
 
-  headerLogo:{
-    marginTop: 10,
-    justifyContent: "center",
-    height:80,
-  }
+
 
 });
