@@ -42,6 +42,30 @@ export function AnimatedGameCard({ game, index }) {
 }
 
 export function PokemonCard({pokemon}) {
+
+  const typesPokemonColor = {
+    normal: "#a8a878",
+    fighting: "#c03028",
+    flying: "#a890f0",
+    poison: "#a040a0",
+    ground: "#e0c068",
+    rock: "#b8a038",
+    bug: "#a8b820",
+    ghost: "#705898",
+    steel: "#b8b8d0",
+    fire: "#ff5a00",
+    water: "#6890f0",
+    grass: "#78c850",
+    electric: "#f8d030",
+    psychic: "#f85888",
+    ice: "#98d8d8",
+    dragon: "#7038f8",
+    dark: "#705848",
+    fairy: "#ee99ac",
+    unknown: "#68a090",
+    stellar: "#b8b8d0",
+  };
+
     return (
       <View className="bg-slate-900 w-1/3">
         <Link href={`/${pokemon.id}`} asChild>
@@ -53,6 +77,15 @@ export function PokemonCard({pokemon}) {
                 />
                 <View  className="px-2">
                     <Text className="font-bold text-lg my-1 text-white">{pokemon.name}</Text>                
+                </View>
+                <View className="flex-row space-x-2">
+                  {
+                    Object.keys(pokemon.types.typePokemon).map((key, index) => (
+                      <View style={{backgroundColor: typesPokemonColor[pokemon.types.typePokemon[key]]}} className="rounded-3xl px-2 py-1" key={index}>
+                        <Text className="text-white">{pokemon.types.typePokemon[key]}</Text>
+                      </View>
+                    ))
+                  }
                 </View>
             </View>
           </StylePressable>

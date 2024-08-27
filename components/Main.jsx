@@ -22,7 +22,7 @@ import { InfoIcon } from "./Icons";
 
 export  function Main() {
   const [games, setGames] = useState([]);
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemon, setPokemon] = useState(null);
   const [numColumns, setNumColumns] = useState(3);
   const insets = useSafeAreaInsets();
 
