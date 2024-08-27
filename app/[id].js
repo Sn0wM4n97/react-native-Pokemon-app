@@ -5,8 +5,6 @@ import { useEffect, useState} from "react";
 import { getColorPokemonById, getDetailsPokemon, getPokemonsbyId } from "../lib/pokemons";
 
 export default function Details() {
-    const[gameInfo, setGameInfo] = useState(null);
-    const[colorPokemon,setColorPokemon] = useState("");
     const[namePokemon,setNamePokemon] = useState(null);
     const { id } = useLocalSearchParams(); // se llama igual que el nombre del archivo, en este caso es id
 
@@ -96,15 +94,51 @@ export default function Details() {
                         </View>
                     </View>
                 </View>
-
-                <View className="flex-row justify-center w-auto items-center space-x-1">
-                    <Text className="my-5 text-white text-3xl text-center font-bold mr-20">{namePokemon?.stats[0].stat.name}</Text>
-                    <View style={styles.barra}>
-                        <View style={[styles.barraInterior, { width: `${namePokemon?.stats[0].base_stat}%` }]}>
-                            <Text>hola</Text>
+                <View>
+                    <Text className="my-5 text-white text-3xl  text-center font-bold">Base stats</Text>
+                </View>
+                <View >
+                    <View className="flex justify-center items-center  my-2">
+                        <Text className="text-white text-center text-xl font-light">HP</Text>
+                        <View className="bg-red-500 rounded-3xl w-2/4 px-8   justify-center">
+                            <View >
+                                <Text className="text-white text-xl text-center font-bold">{namePokemon?.stats[0].base_stat}</Text>
+                            </View>
                         </View>
-                        
                     </View>
+                    <View className="flex justify-center items-center  mb-2">
+                        <Text className="text-white text-xl font-light">ATK</Text>
+                        <View className="bg-orange-500 w-2/4 rounded-3xl px-8  mx-1">
+                            <View >
+                                <Text className="text-white text-xl text-center font-bold">{namePokemon?.stats[1].base_stat}</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View className="flex justify-center items-center  mb-2">
+                        <Text className="text-white text-xl font-light">DEF</Text>
+                        <View className="bg-blue-500 w-2/4 rounded-3xl px-8  mx-1">
+                            <View >
+                                <Text className="text-white text-xl text-center font-bold">{namePokemon?.stats[2].base_stat}</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View className="flex justify-center items-center mb-2">
+                        <Text className="text-white text-xl font-light">SPD</Text>
+                        <View className="bg-slate-500 w-2/4 rounded-3xl px-8  mx-1">
+                            <View >
+                                <Text className="text-white text-xl text-center font-bold">{namePokemon?.stats[3].base_stat}</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View className="flex justify-center items-center mb-2">
+                        <Text className="text-white text-xl font-light">EXP</Text>
+                        <View className="bg-green-500 w-2/4 rounded-3xl px-8  mx-1">
+                            <View >
+                                <Text className="text-white text-center text-xl font-bold">{namePokemon?.stats[4].base_stat}</Text>
+                            </View>
+                        </View>
+                    </View>
+
                 </View>
 
                 
@@ -116,7 +150,7 @@ export default function Details() {
 const styles = StyleSheet.create({
     barra: {
       height: 20,
-      width: 200,
+      width: 100,
       backgroundColor: '#ccc',
       borderRadius: 10,
       justifyContent: 'left',
@@ -128,7 +162,9 @@ const styles = StyleSheet.create({
       borderRadius: 10,
     },
     texto: {
-      fontSize: 12,
-      color: '#333',
+      fontSize: 15,
+      color: '#fff',
+      fontWeight: 'bold',
+      textAlign: 'center',
     },
   });
