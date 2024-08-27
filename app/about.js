@@ -36,7 +36,7 @@ export default function About() {
             />
             <View>
                 <Text className="text-white font-light text-xl text-center px-2 my-96">  
-                    this app was created by m3dsreal
+                    this app was created by Sn0wM4n97
                 </Text>
             </View>
         </View>
