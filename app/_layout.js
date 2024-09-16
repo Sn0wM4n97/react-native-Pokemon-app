@@ -5,25 +5,25 @@ import LogoPokemonSvg from "../components/LogoPokemon";
 import { InfoIcon } from "../components/Icons";
 
 export default function Layout() {
-    return(
-        <Stack 
-            screenOptions={{
-                headerStyle: { backgroundColor: "#111827"},
-                gestureDirection: "vertical",
-                headerTintColor: "#fff", 
-                headerShown: true,
-                headerTitle:"",
-                headerLeft: ()=> <LogoPokemonSvg/>,
-                headerRight: () => (
-                    <Link asChild href="/about">
-                        <Pressable>
-                        <View>
-                            <InfoIcon/>
-                        </View>
-                        </Pressable>
-                    </Link>
-                )
-            }}
-        />   
-    )
+  return (
+    <Stack
+      screenOptions={{
+        headerStyle: { backgroundColor: "#111827" },
+        gestureDirection: "vertical",
+        headerTintColor: "#fff",
+        headerShown: true,
+        headerTitle: "",
+        headerLeft: () => <LogoPokemonSvg />,
+        headerRight: () => (
+          <Link asChild href="/about">
+            <Pressable>
+              <View>
+                <InfoIcon />
+              </View>
+            </Pressable>
+          </Link>
+        ),
+      }}
+    />
+  );
 }
